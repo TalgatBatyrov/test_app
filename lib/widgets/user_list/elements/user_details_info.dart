@@ -9,10 +9,10 @@ import 'package:test_app/models/post.dart';
 import 'package:test_app/models/user.dart';
 import 'package:test_app/services/user_repository.dart';
 
-class UserDeatails extends StatelessWidget {
+class UserDeatailsInfo extends StatelessWidget {
   final UsersRepository usersRepository = UsersRepository();
   final User user;
-  UserDeatails({Key? key, required this.user}) : super(key: key);
+  UserDeatailsInfo({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
