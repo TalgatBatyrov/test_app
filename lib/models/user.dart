@@ -1,21 +1,21 @@
 class User {
   User({
-    this.id,
-    this.name,
-    this.username,
-    this.email,
-    this.address,
-    this.phone,
+    required this.id,
+    required this.name,
+    required this.username,
+    required this.email,
+    required this.address,
+    required this.phone,
     this.website,
     this.company,
   });
 
-  int? id;
-  String? name;
-  String? username;
-  String? email;
+  int id;
+  String name;
+  String username;
+  String email;
   Address? address;
-  String? phone;
+  String phone;
   String? website;
   Company? company;
 

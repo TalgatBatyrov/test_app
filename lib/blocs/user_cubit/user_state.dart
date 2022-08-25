@@ -1,4 +1,6 @@
 // Общее сотояние
+import 'package:test_app/models/user.dart';
+
 abstract class UserState {}
 
 // Нет юзеров
@@ -9,8 +11,8 @@ class UserLoadingState extends UserState {}
 
 // Данные успешно загружены
 class UserLoadedState extends UserState {
-  List<dynamic> loadedUser;
-  UserLoadedState({required this.loadedUser});
+  List<User> users;
+  UserLoadedState({required this.users});
 }
 
 // Произошла ошибка
