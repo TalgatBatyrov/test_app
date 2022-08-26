@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test_app/models/album.dart';
+import 'package:test_app/models/comment.dart';
+import 'package:test_app/models/photos.dart';
 import 'package:test_app/models/post.dart';
 import 'package:test_app/models/user.dart';
 
@@ -34,6 +36,28 @@ class UserApi {
       return json.map((e) => Album.fromJson(e)).toList();
     } else {
       throw Exception('Error fetching albums ...');
+    }
+  }
+
+  Future<List<Comment>> getUserPostComments(int id) async {
+    var response = await Dio()
+        .get('https://jsonplaceholder.typicode.com/posts/$id/comments');
+    if (response.statusCode == 200) {
+      final List<dynamic> json = response.data;
+      return json.map((e) => Comment.fromJson(e)).toList();
+    } else {
+      throw Exception('Error fetching comments ...');
+    }
+  }
+
+  Future<List<Photos>> getPhotos(int id) async {
+    var response = await Dio()
+        .get('https://jsonplaceholder.typicode.com/albums/$id/photos');
+    if (response.statusCode == 200) {
+      final List<dynamic> json = response.data;
+      return json.map((e) => Photos.fromJson(e)).toList();
+    } else {
+      throw Exception('Error fetching photos ...');
     }
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_app/blocs/user_cubit/user_cubit.dart';
 import 'package:test_app/blocs/user_cubit/user_state.dart';
-import 'package:test_app/widgets/user_list/elements/user_details_info.dart';
+import 'package:test_app/widgets/user_list/elements/user_page.dart';
 
 class UsersList extends StatelessWidget {
   const UsersList({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class UsersList extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => UserDeatailsInfo(user: user),
+                      builder: (context) => UserPage(user: user),
                     ),
                   );
                 },
