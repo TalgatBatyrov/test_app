@@ -5,6 +5,7 @@ import 'package:test_app/blocs/photos_cubit/photos_cubit.dart';
 import 'package:test_app/blocs/photos_cubit/photos_state.dart';
 import 'package:test_app/components/error.dart';
 import 'package:test_app/components/loading.dart';
+import 'package:test_app/styles/styles.dart';
 
 class Photos extends StatelessWidget {
   final int albumId;
@@ -16,6 +17,7 @@ class Photos extends StatelessWidget {
       create: (context) => PhotosCubit()..fetchPhotos(albumId),
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Styles.bgColor,
           title: const Text('Photos'),
         ),
         body: BlocBuilder<PhotosCubit, PhotosState>(
@@ -28,100 +30,106 @@ class Photos extends StatelessWidget {
                 fontSize: 18,
                 color: Color.fromARGB(255, 77, 73, 73),
               );
-              return Container(
-                color: const Color.fromARGB(255, 197, 229, 244),
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                    height: double.infinity,
-                  ),
-                  items: state.photos
-                      .map((item) => Column(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  margin: const EdgeInsets.all(10),
-                                  padding: const EdgeInsets.all(10),
+              return CarouselSlider(
+                options: CarouselOptions(
+                  height: double.infinity,
+                ),
+                items: state.photos
+                    .map((item) => Column(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
                                   color: item.id.isEven
                                       ? const Color.fromARGB(111, 76, 175, 79)
                                       : const Color.fromARGB(112, 33, 149, 243),
-                                  child: Text(
-                                    item.title,
-                                    textAlign: TextAlign.center,
-                                    style: textStyle,
-                                  ),
+                                ),
+                                alignment: Alignment.center,
+                                margin: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
+                                child: Text(
+                                  item.title,
+                                  textAlign: TextAlign.center,
+                                  style: textStyle,
                                 ),
                               ),
-                              Expanded(
-                                flex: 5,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        margin: const EdgeInsets.all(10),
-                                        padding: const EdgeInsets.all(10),
+                            ),
+                            Expanded(
+                              flex: 5,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                         color: item.id.isEven
                                             ? const Color.fromARGB(
                                                 112, 33, 149, 243)
                                             : const Color.fromARGB(
                                                 111, 76, 175, 79),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Image.network(
-                                            errorBuilder:
-                                                (context, error, stackTrace) =>
-                                                    const Error(),
-                                            loadingBuilder: (context, child,
-                                                loadingProgress) {
-                                              if (loadingProgress == null) {
-                                                return child;
-                                              }
-                                              return const Loading();
-                                            },
-                                            '${item.url}.jpg',
-                                            width: double.infinity,
-                                          ),
+                                      ),
+                                      margin: const EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(10),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.network(
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  const Error(),
+                                          loadingBuilder: (context, child,
+                                              loadingProgress) {
+                                            if (loadingProgress == null) {
+                                              return child;
+                                            }
+                                            return const Loading();
+                                          },
+                                          '${item.url}.jpg',
+                                          width: double.infinity,
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: double.infinity,
-                                        margin: const EdgeInsets.all(10),
-                                        padding: const EdgeInsets.all(10),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                         color: item.id.isEven
                                             ? const Color.fromARGB(
                                                 111, 76, 175, 79)
                                             : const Color.fromARGB(
                                                 112, 33, 149, 243),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Image.network(
-                                            errorBuilder:
-                                                (context, error, stackTrace) =>
-                                                    const Error(),
-                                            loadingBuilder: (context, child,
-                                                loadingProgress) {
-                                              if (loadingProgress == null) {
-                                                return child;
-                                              }
-                                              return const Loading();
-                                            },
-                                            '${item.thumbnailUrl}.jpg',
-                                            width: double.infinity,
-                                          ),
+                                      ),
+                                      alignment: Alignment.center,
+                                      width: double.infinity,
+                                      margin: const EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(10),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.network(
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  const Error(),
+                                          loadingBuilder: (context, child,
+                                              loadingProgress) {
+                                            if (loadingProgress == null) {
+                                              return child;
+                                            }
+                                            return const Loading();
+                                          },
+                                          '${item.thumbnailUrl}.jpg',
+                                          width: double.infinity,
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  )
+                                ],
                               ),
-                            ],
-                          ))
-                      .toList(),
-                ),
+                            ),
+                          ],
+                        ))
+                    .toList(),
               );
             }
             return const Loading();

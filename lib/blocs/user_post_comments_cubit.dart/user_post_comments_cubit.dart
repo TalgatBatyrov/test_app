@@ -7,11 +7,13 @@ import '../../services/user_api.dart';
 class UserPostCommentsCubit extends Cubit<UserPostCommentsState> {
   UserPostCommentsCubit() : super(UserPostCommentsLoadingState());
 
+  late final List<Comment> loadedUserList;
+
   Future<void> fetchUserPostCommits(int id) async {
     try {
       emit(UserPostCommentsLoadingState());
-      final List<Comment> loadedUserList =
-          await UserApi().getUserPostComments(id);
+      final loadedUserList = await UserApi().getUserPostComments(id);
+
       emit(UserPostCommentsLoadedState(comments: loadedUserList));
     } catch (e) {
       emit(UserPostCommentsErrorState());

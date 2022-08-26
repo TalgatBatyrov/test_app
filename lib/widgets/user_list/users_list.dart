@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_app/blocs/user_cubit/user_cubit.dart';
 import 'package:test_app/blocs/user_cubit/user_state.dart';
+import 'package:test_app/components/error.dart';
+import 'package:test_app/components/loading.dart';
 import 'package:test_app/widgets/user_list/elements/user_page.dart';
 
 class UsersList extends StatelessWidget {
@@ -20,17 +22,10 @@ class UsersList extends StatelessWidget {
           );
         }
         if (state is UserLoadingState) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Loading();
         }
         if (state is UserErrorState) {
-          return const Center(
-            child: Text(
-              'Ошибка сети ... ',
-              style: TextStyle(fontSize: 20.0),
-            ),
-          );
+          return const Error();
         }
 
         if (state is UserLoadedState) {

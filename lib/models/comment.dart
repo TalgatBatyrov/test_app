@@ -15,7 +15,7 @@ class Comment {
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
-      postId: json['postId'],
+      postId: int.parse('${json['postId']}'),
       id: json['id'],
       name: json['name'],
       email: json['email'],

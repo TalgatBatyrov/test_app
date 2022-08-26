@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_app/components/custom_posts_preview_button.dart';
 import 'package:test_app/components/preview_title.dart';
 import 'package:test_app/models/post.dart';
-import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/elements/posts/elements/post_item.dart';
+import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/components/posts/elements/posts_item.dart';
 
 class PostsPreview extends StatelessWidget {
   final List<Post> posts;
@@ -25,9 +25,9 @@ class PostsPreview extends StatelessWidget {
               CustomPostsPreviewButton(title: 'All Posts', posts: posts)
             ],
           ),
-          PostItem(post: posts[0]),
-          PostItem(post: posts[1]),
-          PostItem(post: posts[2]),
+          if (posts.isNotEmpty) PostsItem(post: posts[0]),
+          if (posts.length >= 2) PostsItem(post: posts[1]),
+          if (posts.length >= 3) PostsItem(post: posts[2]),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/models/album.dart';
 import 'package:test_app/pages/photos.dart';
+import 'package:test_app/styles/styles.dart';
 
 class AlbumsItem extends StatelessWidget {
   final Album album;
@@ -12,7 +13,7 @@ class AlbumsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromARGB(107, 158, 158, 158),
+      color: Styles.grey,
       elevation: 0,
       child: ListTile(
         onTap: () {
@@ -26,7 +27,10 @@ class AlbumsItem extends StatelessWidget {
         leading: Text('${album.id}'),
         title: Text(
           album.title,
-          style: const TextStyle(fontSize: 18),
+          style: const TextStyle(
+            fontSize: 18,
+            color: Styles.titleColor,
+          ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),

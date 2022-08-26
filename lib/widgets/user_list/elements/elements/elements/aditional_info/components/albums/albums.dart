@@ -4,7 +4,7 @@ import 'package:test_app/blocs/user_albums_cubit/user_albums_cubit.dart';
 import 'package:test_app/blocs/user_albums_cubit/user_albums_state.dart';
 import 'package:test_app/components/error.dart';
 import 'package:test_app/components/loading.dart';
-import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/elements/albums/elements/albums_preview.dart';
+import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/components/albums/elements/albums_preview.dart';
 
 class Albums extends StatelessWidget {
   const Albums({

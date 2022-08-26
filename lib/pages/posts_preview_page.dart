@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/models/post.dart';
-import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/elements/posts/elements/post_item.dart';
+import 'package:test_app/styles/styles.dart';
+import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/components/posts/elements/posts_item.dart';
 
 class PostsPreviewPage extends StatelessWidget {
   final List<Post> posts;
@@ -12,7 +13,10 @@ class PostsPreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Posts')),
+      appBar: AppBar(
+        title: const Text('Posts'),
+        backgroundColor: Styles.bgColor,
+      ),
       body: Column(
         children: [
           Expanded(
@@ -26,7 +30,7 @@ class PostsPreviewPage extends StatelessWidget {
               },
               itemBuilder: (BuildContext context, int index) {
                 final post = posts[index];
-                return PostItem(post: post);
+                return PostsItem(post: post);
               },
             ),
           ),

@@ -2,7 +2,7 @@ import 'package:test_app/models/album.dart';
 
 abstract class UserAlbumsState {}
 
-// Нет юзеров
+// Нет данных
 class UserAlbumsEmptyState extends UserAlbumsState {}
 
 // Идет процесс загрузки

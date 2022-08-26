@@ -60,4 +60,26 @@ class UserApi {
       throw Exception('Error fetching photos ...');
     }
   }
+
+  Future<Comment> sendComment({
+    required int id,
+    required String name,
+    required String body,
+    required String email,
+  }) async {
+    try {
+      var response = await Dio().post(
+        'https://jsonplaceholder.typicode.com/posts/$id/comments',
+        data: {
+          'name': name,
+          'email': email,
+          'body': body,
+        },
+      );
+      final json = response.data;
+      return Comment.fromJson(json);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

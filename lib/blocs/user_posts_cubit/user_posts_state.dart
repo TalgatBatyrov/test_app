@@ -2,7 +2,7 @@ import 'package:test_app/models/post.dart';
 
 abstract class UserPostsState {}
 
-// Нет юзеров
+// Нет данных
 class UserPostsEmptyState extends UserPostsState {}
 
 // Идет процесс загрузки

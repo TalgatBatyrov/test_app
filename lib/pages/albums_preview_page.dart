@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/models/album.dart';
-import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/elements/albums/elements/albums_item.dart';
+import 'package:test_app/styles/styles.dart';
+import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/components/albums/elements/albums_item.dart';
 
 class AlbumsPreviewPage extends StatelessWidget {
   final List<Album> albums;
@@ -12,7 +13,10 @@ class AlbumsPreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Albums')),
+      appBar: AppBar(
+        title: const Text('Albums'),
+        backgroundColor: Styles.bgColor,
+      ),
       body: Column(
         children: [
           Expanded(
