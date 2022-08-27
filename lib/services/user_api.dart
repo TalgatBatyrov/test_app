@@ -11,18 +11,20 @@ import 'package:test_app/models/user.dart';
 class UserApi {
   var dio = Dio();
   final baseUrl = 'https://jsonplaceholder.typicode.com/';
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<List<User>> getUsers() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
+      final prefs = await _prefs;
+      // await prefs.clear();
 
       var response = await dio.get('${baseUrl}users');
 
-      final List<dynamic> jsonr = response.data;
+      final List<dynamic> data = response.data;
 
-      final users = jsonr.map((e) => User.fromJson(e)).toList();
+      final users = data.map((e) => User.fromJson(e)).toList();
 
-      prefs.setString('users', json.encode(users));
+      await prefs.setString('users', json.encode(users));
 
       return users;
     } catch (_) {
@@ -32,9 +34,16 @@ class UserApi {
 
   Future<List<Post>> getUserPosts(int id) async {
     try {
+      final prefs = await _prefs;
+
       var response = await dio.get('${baseUrl}users/$id/posts');
-      final List<dynamic> json = response.data;
-      return json.map((e) => Post.fromJson(e)).toList();
+
+      final List<dynamic> data = response.data;
+      await prefs.setString('posts', json.encode(data));
+
+      final posts = data.map((e) => Post.fromJson(e)).toList();
+
+      return posts;
     } catch (_) {
       rethrow;
     }
@@ -42,9 +51,12 @@ class UserApi {
 
   Future<List<Album>> getUserAlbums(int id) async {
     try {
+      final prefs = await _prefs;
       var response = await dio.get('${baseUrl}users/$id/albums');
-      final List<dynamic> json = response.data;
-      return json.map((e) => Album.fromJson(e)).toList();
+      final List<dynamic> data = response.data;
+      await prefs.setString('albums', json.encode(data));
+      final albums = data.map((e) => Album.fromJson(e)).toList();
+      return albums;
     } catch (_) {
       rethrow;
     }
@@ -52,9 +64,12 @@ class UserApi {
 
   Future<List<Comment>> getUserPostComments(int id) async {
     try {
+      final prefs = await _prefs;
       var response = await dio.get('${baseUrl}posts/$id/comments');
-      final List<dynamic> json = response.data;
-      return json.map((e) => Comment.fromJson(e)).toList();
+      final List<dynamic> data = response.data;
+      prefs.setString('postComments', json.encode(data));
+      final postComments = data.map((e) => Comment.fromJson(e)).toList();
+      return postComments;
     } catch (_) {
       rethrow;
     }
@@ -62,9 +77,12 @@ class UserApi {
 
   Future<List<Photos>> getPhotos(int id) async {
     try {
+      final prefs = await _prefs;
       var response = await dio.get('${baseUrl}albums/$id/photos');
-      final List<dynamic> json = response.data;
-      return json.map((e) => Photos.fromJson(e)).toList();
+      final List<dynamic> data = response.data;
+      await prefs.setString('photos', json.encode(data));
+      final photos = data.map((e) => Photos.fromJson(e)).toList();
+      return photos;
     } catch (_) {
       rethrow;
     }
@@ -77,6 +95,7 @@ class UserApi {
     required String email,
   }) async {
     try {
+      final prefs = await _prefs;
       var response = await dio.post(
         '${baseUrl}posts/$id/comments',
         data: {
@@ -85,8 +104,10 @@ class UserApi {
           'body': body,
         },
       );
-      final json = response.data;
-      return Comment.fromJson(json);
+      final data = response.data;
+      final newComment = Comment.fromJson(data);
+      prefs.setString('newComment', json.encode(newComment));
+      return newComment;
     } catch (_) {
       rethrow;
     }

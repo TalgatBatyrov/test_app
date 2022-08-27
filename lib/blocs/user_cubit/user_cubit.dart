@@ -16,18 +16,34 @@ class UserCubit extends Cubit<UserState> {
     try {
       final prefs = await SharedPreferences.getInstance();
       emit(UserLoadingState());
+      // Получили юзеров
       final List<User> loadedUserList = await usersRepository.getAllUsers();
-      final users = prefs.getString('users');
-      if (users != null) {
-        final List<dynamic> responsOfdec = json.decode(users);
-        final models = responsOfdec.map((e) => User.fromJson(e)).toList();
-
-        emit(UserLoadedState(users: models));
+      final cacheUsers = prefs.getString('users');
+      // Если в кэше есть данные то показываем их
+      if (cacheUsers != null) {
+        final List<dynamic> decodeUsers = json.decode(cacheUsers);
+        final cacheUsersList =
+            decodeUsers.map((e) => User.fromJson(e)).toList();
+        emit(UserLoadedState(users: cacheUsersList));
+        // Иначе загруженные
       } else {
         emit(UserLoadedState(users: loadedUserList));
       }
+      // В случае ошибки проверяем кэш и если есть показываем
     } catch (e) {
-      emit(UserErrorState());
+      // Вот это дублирование нужно исправить
+      final prefs = await SharedPreferences.getInstance();
+      final usersCache = prefs.getString('users');
+      if (usersCache != null) {
+        final List<dynamic> decodeUsers = json.decode(usersCache);
+
+        final models = decodeUsers.map((e) => User.fromJson(e)).toList();
+
+        emit(UserLoadedState(users: models));
+      } else {
+        // Иначе выводим ошибку
+        emit(UserErrorState());
+      }
     }
   }
 }
