@@ -19,8 +19,8 @@ class UserAlbumCubit extends Cubit<UserAlbumsState> {
 
       final cacheAlbums = prefs.getString('albums');
       if (cacheAlbums != null) {
-        final List<dynamic> decodePosts = json.decode(cacheAlbums);
-        final models = decodePosts.map((e) => Album.fromJson(e)).toList();
+        final List<dynamic> decodeAlbums = json.decode(cacheAlbums);
+        final models = decodeAlbums.map((e) => Album.fromJson(e)).toList();
         emit(UserAlbumsLoadedState(albums: models));
       } else {
         emit(UserAlbumsLoadedState(albums: albums));
@@ -29,8 +29,8 @@ class UserAlbumCubit extends Cubit<UserAlbumsState> {
       final prefs = await SharedPreferences.getInstance();
       final cacheAlbums = prefs.getString('albums');
       if (cacheAlbums != null) {
-        final List<dynamic> decodePosts = json.decode(cacheAlbums);
-        final models = decodePosts.map((e) => Album.fromJson(e)).toList();
+        final List<dynamic> decodeAlbums = json.decode(cacheAlbums);
+        final models = decodeAlbums.map((e) => Album.fromJson(e)).toList();
         emit(UserAlbumsLoadedState(albums: models));
       } else {
         emit(UserAlbumsErrorState());

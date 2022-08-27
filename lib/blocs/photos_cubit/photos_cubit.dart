@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_app/blocs/photos_cubit/photos_state.dart';
@@ -12,9 +11,12 @@ class PhotosCubit extends Cubit<PhotosState> {
   Future<void> fetchPhotos(int id) async {
     try {
       final prefs = await SharedPreferences.getInstance();
+
       emit(PhotosLoadingState());
       final List<Photos> loadedUserList = await UserApi().getPhotos(id);
+
       final cachePhotos = prefs.getString('photos');
+
       if (cachePhotos != null) {
         final List<dynamic> decodeUsers = json.decode(cachePhotos);
         final cachePhotosList =
@@ -24,7 +26,17 @@ class PhotosCubit extends Cubit<PhotosState> {
         emit(PhotosLoadedState(photos: loadedUserList));
       }
     } catch (e) {
-      emit(PhotosErrorState());
+      final prefs = await SharedPreferences.getInstance();
+      final cachePhotos = prefs.getString('photos');
+
+      if (cachePhotos != null) {
+        final List<dynamic> decodeUsers = json.decode(cachePhotos);
+        final cachePhotosList =
+            decodeUsers.map((e) => Photos.fromJson(e)).toList();
+        emit(PhotosLoadedState(photos: cachePhotosList));
+      } else {
+        emit(PhotosErrorState());
+      }
     }
   }
 }

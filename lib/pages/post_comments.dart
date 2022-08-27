@@ -20,6 +20,11 @@ class PostComments extends StatefulWidget {
 
 class _PostCommentsState extends State<PostComments> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final nameController = TextEditingController();
     final emailController = TextEditingController();
@@ -117,6 +122,7 @@ class _PostCommentsState extends State<PostComments> {
                                     email: emailController.text,
                                     name: nameController.text,
                                   );
+
                                   state.comments.add(comment);
                                   setState(() {});
                                 }

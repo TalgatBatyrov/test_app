@@ -105,8 +105,9 @@ class UserApi {
         },
       );
       final data = response.data;
+      prefs.setString('newComment', json.encode(data));
+
       final newComment = Comment.fromJson(data);
-      prefs.setString('newComment', json.encode(newComment));
       return newComment;
     } catch (_) {
       rethrow;
