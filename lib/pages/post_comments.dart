@@ -38,7 +38,6 @@ class _PostCommentsState extends State<PostComments> {
               return const Error();
             }
             if (state is UserPostCommentsLoadedState) {
-              final test = context.watch<UserPostCommentsCubit>();
               return Column(
                 children: [
                   Expanded(
@@ -99,11 +98,11 @@ class _PostCommentsState extends State<PostComments> {
                               TextField(
                                 controller: bodyController,
                                 decoration:
-                                    const InputDecoration(hintText: 'Body'),
+                                    const InputDecoration(hintText: 'Comment'),
                               ),
                             ],
                           ),
-                          content: const Text('Add comment'),
+                          content: const Text('New comment'),
                           actions: [
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(

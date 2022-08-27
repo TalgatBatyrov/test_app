@@ -1,4 +1,3 @@
-// Общее сотояние
 import 'package:test_app/models/user.dart';
 
 abstract class UserState {}

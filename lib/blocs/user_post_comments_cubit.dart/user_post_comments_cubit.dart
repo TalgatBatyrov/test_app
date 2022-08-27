@@ -15,7 +15,7 @@ class UserPostCommentsCubit extends Cubit<UserPostCommentsState> {
       final loadedUserList = await UserApi().getUserPostComments(id);
 
       emit(UserPostCommentsLoadedState(comments: loadedUserList));
-    } catch (e) {
+    } catch (_) {
       emit(UserPostCommentsErrorState());
     }
   }
