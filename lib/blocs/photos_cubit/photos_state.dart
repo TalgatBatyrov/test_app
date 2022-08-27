@@ -1,4 +1,4 @@
-import 'package:test_app/models/photos.dart';
+import 'package:test_app/models/photo.dart';
 
 abstract class PhotosState {}
 
@@ -11,7 +11,7 @@ class PhotosLoadingState extends PhotosState {}
 // Данные успешно загружены
 
 class PhotosLoadedState extends PhotosState {
-  List<Photos> photos;
+  List<Photo> photos;
   PhotosLoadedState({required this.photos});
 }
 

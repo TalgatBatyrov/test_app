@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/models/user.dart';
-import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/additional_info.dart';
-import 'package:test_app/widgets/user_list/elements/elements/elements/personal_info.dart';
+import 'package:test_app/widgets/element/component/element/element/aditional_info/additional_info.dart';
+import 'package:test_app/widgets/element/component/element/element/personal_info.dart';
 
 class UserInfo extends StatelessWidget {
   const UserInfo({

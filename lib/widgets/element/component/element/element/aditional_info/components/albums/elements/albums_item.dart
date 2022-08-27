@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_app/blocs/theme_cubit/theme_cubit.dart';
 import 'package:test_app/models/album.dart';
 import 'package:test_app/pages/photos.dart';
 import 'package:test_app/styles/styles.dart';
@@ -12,6 +14,7 @@ class AlbumsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeCubit = context.watch<ThemeCubit>();
     return Card(
       color: Styles.grey,
       elevation: 0,
@@ -27,9 +30,9 @@ class AlbumsItem extends StatelessWidget {
         leading: Text('${album.id}'),
         title: Text(
           album.title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18,
-            color: Styles.titleColor,
+            color: themeCubit.isLight ? Styles.lightColor : Styles.nightColor,
           ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,

@@ -4,7 +4,7 @@ import 'package:test_app/blocs/user_cubit/user_cubit.dart';
 import 'package:test_app/blocs/user_cubit/user_state.dart';
 import 'package:test_app/components/error.dart';
 import 'package:test_app/components/loading.dart';
-import 'package:test_app/widgets/user_list/elements/user_page.dart';
+import 'package:test_app/widgets/element/component/user_page.dart';
 
 class UsersList extends StatelessWidget {
   const UsersList({Key? key}) : super(key: key);

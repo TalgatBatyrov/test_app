@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_app/models/album.dart';
 import 'package:test_app/models/comment.dart';
-import 'package:test_app/models/photos.dart';
+import 'package:test_app/models/photo.dart';
 import 'package:test_app/models/post.dart';
 import 'package:test_app/models/user.dart';
 
@@ -75,13 +75,13 @@ class UserApi {
     }
   }
 
-  Future<List<Photos>> getPhotos(int id) async {
+  Future<List<Photo>> getPhotos(int id) async {
     try {
       final prefs = await _prefs;
       var response = await dio.get('${baseUrl}albums/$id/photos');
       final List<dynamic> data = response.data;
       await prefs.setString('photos', json.encode(data));
-      final photos = data.map((e) => Photos.fromJson(e)).toList();
+      final photos = data.map((e) => Photo.fromJson(e)).toList();
       return photos;
     } catch (_) {
       rethrow;

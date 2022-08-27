@@ -1,11 +1,11 @@
-class Photos {
+class Photo {
   final int albumId;
   final int id;
   final String title;
   final String url;
   final String thumbnailUrl;
 
-  const Photos({
+  const Photo({
     required this.albumId,
     required this.id,
     required this.title,
@@ -13,8 +13,8 @@ class Photos {
     required this.thumbnailUrl,
   });
 
-  factory Photos.fromJson(Map<String, dynamic> json) {
-    return Photos(
+  factory Photo.fromJson(Map<String, dynamic> json) {
+    return Photo(
       albumId: json['albumId'],
       id: json['id'],
       title: json['title'],

@@ -4,7 +4,7 @@ import 'package:test_app/blocs/user_posts_cubit/user_posts_cubit.dart';
 import 'package:test_app/blocs/user_posts_cubit/user_posts_state.dart';
 import 'package:test_app/components/error.dart';
 import 'package:test_app/components/loading.dart';
-import 'package:test_app/widgets/user_list/elements/elements/elements/aditional_info/components/posts/elements/posts_preview.dart';
+import 'package:test_app/widgets/element/component/element/element/aditional_info/components/posts/elements/posts_preview.dart';
 
 class Posts extends StatelessWidget {
   const Posts({
